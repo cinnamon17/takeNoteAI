@@ -1,0 +1,27 @@
+{
+  "name": "takenoteai",
+  "version": "1.0.0",
+  "description": "AI to transcribe voice to text",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cinnamon17/takeNoteAI.git"
+  },
+  "keywords": [
+    "AI",
+    "Voice",
+    "Text"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cinnamon17/takeNoteAI/issues"
+  },
+  "homepage": "https://github.com/cinnamon17/takeNoteAI#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
