@@ -1,0 +1,14 @@
+title TakeNoteAI
+
+Audio(front)->NodeJS(Back):Envia el audio al server
+NodeJS(Back)->AWS Trancribe: Se delega la operacion de transcripcion a AWS Transcribe
+
+AWS Trancribe->NodeJS(Back):Devuelve una respuesta en texto
+
+NodeJS(Back)->OpenAI:Envia el texto recibido para procesar
+
+OpenAI->NodeJS(Back):Devuelve la informacion categorizada 
+
+NodeJS(Back)->Audio(front):Ouput de la informacion resumida y ordenada
+
+
