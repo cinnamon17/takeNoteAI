@@ -1,0 +1,41 @@
+html
+  head
+    title Grabar entrevista
+
+    style.
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        cursor: pointer;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+        transition: all 0.2s ease-in-out;
+        outline: none;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .display-none {
+        display: none;
+      }
+
+  body
+    button#startBtn(type="button") Iniciar grabación
+    button#stopBtn.display-none(type="button") Detener grabación
+    audio#audio(src='', controls=true)
+
+    script(src="/javascripts/audioCollector.js")
