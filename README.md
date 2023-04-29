@@ -28,3 +28,24 @@ Para el hackaton este diseño de aplicacion se basa en la siguiente arquitectura
  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/master/TakeNoteAI.png">
  <img alt="YOUR-ALT-TEXT" src="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/master/TakeNoteAI.png">
 </picture>
+
+## Instalación 
+
+```
+git clone git@github.com:cinnamon17/takeNoteAI.git
+cd takeNoteAI
+npm install
+```
+
+## Iniciando el server
+
+Modo debug:
+```
+DEBUG=myapp:* npm start
+```
+## URL
+
+```
+http://localhost:3000/
+```
+
