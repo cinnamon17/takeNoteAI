@@ -1,0 +1,11 @@
+{
+  "ignore": [
+    ".git"
+  ],
+  "watch": [
+    "src/*"
+  ],
+  "env": {
+    "NODE_ENV": "test"
+  }
+}
