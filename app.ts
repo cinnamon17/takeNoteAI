@@ -29,7 +29,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the API v1' })
+  //res.json({ message: 'Welcome to the API v1' })
+  res.render('index');
+
 })
 
 app.use(dataRoutes)
