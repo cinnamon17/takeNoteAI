@@ -10,6 +10,7 @@ if (process.env.NODE_ENV == 'prod') {
 }
 
 import dataRoutes from './routes/data.routes'
+import dbConnectorsRepository from './db/db-connectors.repository'
 
 
 export const app = express()
@@ -30,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
   //res.json({ message: 'Welcome to the API v1' })
-  res.render('index');
+  res.render('index')
 
 })
 
@@ -39,3 +40,6 @@ app.use(dataRoutes)
 app.listen(app.get('port'), () => {
   console.log('Server on Port: ' + process.env.PORT)
 })
+
+
+dbConnectorsRepository.start()
