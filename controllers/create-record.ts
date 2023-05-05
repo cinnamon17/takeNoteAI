@@ -1,19 +1,20 @@
 import { Request, Response } from 'express'
-import database from '../db/mongoDB/database'
 import { RecordSchema } from '../interfaces/record.interface'
+import { getDistinctKeys } from '../db/services/question.service'
+import { insertRecord } from '../db/services/record.service'
 
 export const createRecord = async (req: Request, res: Response) => {
 
   try {
 
-    const keys = await database.distinct('questions', 'key')
+    const keys = await getDistinctKeys()
 
     const schema: RecordSchema = {
       questionToAsk: keys,
       questions: []
 
     }
-    const id = await database.insert('records', schema)
+    const id = await insertRecord(schema)
 
     res.json({ id })
   } catch (e) {

@@ -70,11 +70,12 @@ export const checkIntent = async (questions: Array<any>, doc: Document) => {
   })
 
   const systemChatMessage = new SystemChatMessage(
-    'You are a intent detector system \n' +
+    'You are an intent detector system \n' +
     'Your task is to determinate if, based on the client text you can answer the client question. \n' +
     'The client text is a conversation between two people (interviewer and interviewee) ' +
     'Identify the information from the interviewee. \n ' +
-    'Your answer should be only one word: "Yes" If you can answer the question, "No" if you can not do it')
+    'Your answer should be only one word in English language \n' +
+    'Response with "Yes" if you can answer the question or response with "No" if you can not do it')
 
   const replaceClientValue = (text: string, question: string): HumanChatMessage => {
 

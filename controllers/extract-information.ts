@@ -31,7 +31,7 @@ export const extractInformation = async (req: Request, res: Response) => {
     const data = fs.readFileSync(basePath)
     await uploadFileToS3(filename, data)
 
-    const source = 'https://take-notes-ai-outputs.s3.eu-south-2.amazonaws.com/' + filename;
+    const source = 'https://take-notes-ai-outputs.s3.eu-south-2.amazonaws.com/' + filename
     const format = filename.split('.').reverse()[0]
     const transcribeJobName = await transcribeAudio(file.filename, source, format)
 
@@ -50,7 +50,9 @@ export const extractInformation = async (req: Request, res: Response) => {
 
           if (response.status) {
             isCompleted = response.status === 'COMPLETED' || response.status === 'FAILED'
-          } else {
+          }
+
+          if (!isCompleted) {
             await new Promise(resolve => setTimeout(resolve, 1000 * 15))
           }
         }
@@ -67,23 +69,24 @@ export const extractInformation = async (req: Request, res: Response) => {
 
     const jsonObj = await getObjectFromS3(jsonKey)
 
+    let response
     if (jsonObj) {
       const content = <{ results: { transcripts: Array<{ transcript: string }> } }>JSON.parse(jsonObj)
       const text = content.results.transcripts.map(it => it.transcript).join(' ')
 
-      const response = await getAnswerFromQuestionsChatGPT(questions, text)
+      response = await getAnswerFromQuestionsChatGPT(questions, text)
       const questionToAskKey = response.questions.map(it => it.key)
-      const answerQuestionList = [...response.answerQuestionList, ...response.answerQuestionList]
+      const answerQuestionList = [...response.answerQuestionList, ...record.questions]
 
-      await updateRecord({
+      await updateRecord(id, {
         questionToAsk: questionToAskKey,
         questions: answerQuestionList
       })
     }
 
 
-    res.sendStatus(200)
+    res.status(200).json({ answers: response?.answerQuestionList})
   } catch (e) {
-    res.status(400)
+    res.status(400).json(e)
   }
 }
