@@ -31,7 +31,7 @@ export const extractInformation = async (req: Request, res: Response) => {
     const data = fs.readFileSync(basePath)
     await uploadFileToS3(filename, data)
 
-    const source = 'https://take-notes-ai-outputs.s3.eu-south-2.amazonaws.com/' + filename
+    const source = 'https://take-notes-ai-outputs.s3.eu-west-2.amazonaws.com/' + filename
     const format = filename.split('.').reverse()[0]
     const transcribeJobName = await transcribeAudio(file.filename, source, format)
 
@@ -87,6 +87,7 @@ export const extractInformation = async (req: Request, res: Response) => {
 
     res.status(200).json({ answers: response?.answerQuestionList})
   } catch (e) {
+    console.log(e)
     res.status(400).json(e)
   }
 }

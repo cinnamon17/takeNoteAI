@@ -11,7 +11,6 @@ export const uploadFileToS3 = async function(filename: string, buffer: Buffer) {
 
     const command = new PutObjectCommand(params)
     const response = await s3Client.send(command)
-    console.log(response)
     return { response }
   } catch (e) {
     throw e
