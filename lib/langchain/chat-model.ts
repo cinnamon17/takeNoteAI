@@ -17,7 +17,7 @@ export const getAnswerFromQuestionsChatGPT = async (questions: Array<QuestionSch
     const promiseResponses = await checkIntent(questions, doc)
 
     const promiseQuestionList = new Array<Promise<BaseChatMessage>>()
-    const questionList = new Array<{ key: string }>()
+    const questionList = new Array<QuestionSchema>()
 
     for (let i = 0; i < questions.length; i++) {
       const res = promiseResponses[i]

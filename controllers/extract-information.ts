@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
+import fs from 'node:fs'
 import { fetchTranscribeJob, transcribeAudio } from '../lib/aws/transcribe/transcribe'
 import { getObjectFromS3, uploadFileToS3 } from '../lib/aws/s3/take-note-s3'
 import { getAnswerFromQuestionsChatGPT } from '../lib/langchain/chat-model'
-import fs from 'node:fs'
 import { getRecordById, updateRecord } from '../db/services/record.service'
 import { getAllQuestionsByKeys } from '../db/services/question.service'
 
@@ -15,7 +15,7 @@ export const extractInformation = async (req: Request, res: Response) => {
     const { file } = req
 
     if (!id) {
-      throw Error('Id Record is required')
+      throw Error('Record ID is required')
     }
 
     if (!file) {
@@ -31,7 +31,7 @@ export const extractInformation = async (req: Request, res: Response) => {
     const data = fs.readFileSync(basePath)
     await uploadFileToS3(filename, data)
 
-    const source = 'https://take-notes-ai.s3.eu-south-2.amazonaws.com/' + filename;
+    const source = 'https://take-notes-ai-outputs.s3.eu-south-2.amazonaws.com/' + filename;
     const format = filename.split('.').reverse()[0]
     const transcribeJobName = await transcribeAudio(file.filename, source, format)
 
@@ -58,7 +58,7 @@ export const extractInformation = async (req: Request, res: Response) => {
     }
 
     if (!transcribeOutputUrl) {
-      throw Error('Transcribe Output Url not was found')
+      throw Error('Transcribe Output Url was not found')
     }
 
     // https://take-notes-ai-outputs.s3.eu-west-2.amazonaws.com/f347ca124823c7a01d03ee7b6f005226.json
