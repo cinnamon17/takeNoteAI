@@ -54,8 +54,8 @@ function createRecord() {
 
 function uploadAudio(id) {
   const formData = new FormData()
-  const blob = new Blob(chunks, { type: 'audio/mp3' })
-  formData.append('audio', blob, 'recorded_audio.mp3')
+  const blob = new Blob(chunks, { type: 'audio/webm' })
+  formData.append('audio', blob, 'recorded_audio.webm')
 
   const xhr = new XMLHttpRequest()
   xhr.open('POST', '/upload-audio/' + id)
