@@ -11,7 +11,7 @@ startBtn.addEventListener('click', () => {
       recorder = new MediaRecorder(stream)
       recorder.addEventListener('dataavailable', e => chunks.push(e.data))
       recorder.addEventListener('stop', () => {
-        const blob = new Blob(chunks, { type: 'audio/mp3' })
+        const blob = new Blob(chunks, { type: 'audio/ogg' })
         const url = URL.createObjectURL(blob)
         audio.src = url
         stream.getAudioTracks()[0].stop()
@@ -54,8 +54,8 @@ function createRecord() {
 
 function uploadAudio(id) {
   const formData = new FormData()
-  const blob = new Blob(chunks, { type: 'audio/webm' })
-  formData.append('audio', blob, 'recorded_audio.webm')
+  const blob = new Blob(chunks, { type: 'audio/ogg' })
+  formData.append('audio', blob, 'recorded_audio.ogg')
 
   const xhr = new XMLHttpRequest()
   xhr.open('POST', '/upload-audio/' + id)
