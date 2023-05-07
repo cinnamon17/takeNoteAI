@@ -70,11 +70,12 @@ export const extractInformation = async (req: Request, res: Response) => {
     const jsonObj = await getObjectFromS3(jsonKey)
 
     let response
+    let jsonText
     if (jsonObj) {
       const content = <{ results: { transcripts: Array<{ transcript: string }> } }>JSON.parse(jsonObj)
-      const text = content.results.transcripts.map(it => it.transcript).join(' ')
+      jsonText = content.results.transcripts.map(it => it.transcript).join(' ')
 
-      response = await getAnswerFromQuestionsChatGPT(questions, text)
+      response = await getAnswerFromQuestionsChatGPT(questions, jsonText)
       const questionToAskKey = response.questions.map(it => it.key)
       const answerQuestionList = [...response.answerQuestionList, ...record.questions]
 
@@ -85,7 +86,7 @@ export const extractInformation = async (req: Request, res: Response) => {
     }
 
 
-    res.status(200).json({ answers: response?.answerQuestionList})
+    res.status(200).json({ script: jsonText, answers: response?.answerQuestionList})
   } catch (e) {
     console.log(e)
     res.status(400).json(e)
