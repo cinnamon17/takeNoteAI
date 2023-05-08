@@ -14,8 +14,7 @@
     "outDir": "./dist"
   },
   "include": [
-    "src/**/**.ts",
-    "src/**/config.env"
+    "/**/**.ts",
   ],
   "exclude": [
     "node_modules"

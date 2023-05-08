@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules",
-    "src/apps/api/test"
+  "exclude": [
+    "node_modules"
   ]
 }
