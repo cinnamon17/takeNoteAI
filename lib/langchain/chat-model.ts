@@ -71,12 +71,13 @@ export const checkIntent = async (questions: Array<any>, doc: Document) => {
 
   const systemChatMessage = new SystemChatMessage(
     'You are an intent detector system \n' +
-    'The client text is a conversation between two people (interviewer and interviewee) ' +
+    'Your task is to determinate if exist an answer for the client question based on the client text. \n' +
+    'The client text is a conversation between two people (interviewer and interviewee). ' +
+    'Typically the interviewer make the questions. \n' +
     'Identify the information from the interviewee. \n ' +
-    'Your task is to determinate if, based on the client text you can answer the client question. \n' +
     'Your answer should be only one word in English language \n' +
-    'If the answer is not in the text, do not try to guess it \n' +
-    'Response with "Yes" if you can answer the question or response with "No" if you can not do it')
+    'If the answer is not provided in text, response with "No" \n' +
+    'Response only with "Yes" if the answer for the question is provided.')
 
   const replaceClientValue = (text: string, question: string): HumanChatMessage => {
 
@@ -109,9 +110,10 @@ export const getAnswerFromText = (text: string, question: string): Promise<BaseC
 
   const replaceSystemMessageValue = (): SystemChatMessage => {
     let prompt = 'You are a data extractor system \n' +
-      'Important: Your task is the next: Based on the client text you must to answer the client question. \n' +
+      'Important: Your task is to provide an answer to the client\'s question based on their text. \n' +
       'The client text is a conversation between two people (interviewer and interviewee) ' +
-      'Response the answer based on the interviewee information. \n' +
+      'Typically the interviewer make the questions. \n' +
+      'The answer have to be based on the interviewee information. \n' +
       'Important: Do not add more information. Be concise and clear \n' +
       'Response only the answer and in the same language that the question \n'
 
