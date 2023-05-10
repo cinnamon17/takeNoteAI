@@ -3,7 +3,6 @@ import { extractInformation } from '../controllers/extract-information'
 import multer from 'multer'
 import { createRecord } from '../controllers/create-record'
 import { allQuestions } from '../controllers/all-questions'
-import { lastRecords } from '../controllers/last-records'
 import path from 'path'
 
 const router = Router()
@@ -22,7 +21,6 @@ const upload = multer({ storage: storage })
 
 
 router.get('/questions', allQuestions)
-router.get('/', lastRecords)
 router.post('/new-record', createRecord)
 router.post('/upload-audio/:id', upload.single('audio'), extractInformation)
 
