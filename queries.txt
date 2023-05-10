@@ -11,7 +11,7 @@ db.questions.insertMany([
   },
   {
     "key": "personStudy",
-    "question": "¿Tiene sus estudios homoloados en España?",
+    "question": "¿Tiene sus estudios homologados en España?",
     "questionType": "close"
   },
   {
