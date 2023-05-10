@@ -37,6 +37,21 @@ cd takeNoteAI
 npm install
 ```
 
+## Creacion de archivo .env
+
+Debe tener las siguientes variables de entorno establecidas para poder funcionar
+
+```
+NODE_ENV=test
+PORT=3000
+
+AWS_ACCESS_KEY=
+AWS_SECRET_KEY=
+AWS_REGION=
+AWS_BUCKET=
+OPENAI_API_KEY=
+```
+
 ## Iniciando el server
 
 Modo debug:
