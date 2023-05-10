@@ -24,9 +24,9 @@ Esto ahorra tiempo y permite a nuestros usuarios concentrarse en escuchar a la p
 Para el hackaton este diseño de aplicacion se basa en la siguiente arquitectura
 
 <picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/master/TakeNoteAI.png">
- <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/master/TakeNoteAI.png">
- <img alt="YOUR-ALT-TEXT" src="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/master/TakeNoteAI.png">
+ <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/basic-workflow/TakeNoteAI.png">
+ <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/basic-workflow/TakeNoteAI.png">
+ <img alt="YOUR-ALT-TEXT" src="https://raw.githubusercontent.com/cinnamon17/takeNoteAI/basic-workflow/TakeNoteAI.png">
 </picture>
 
 ## Instalación 
@@ -37,11 +37,26 @@ cd takeNoteAI
 npm install
 ```
 
+## Creacion de archivo .env
+
+Debe tener las siguientes variables de entorno establecidas para poder funcionar
+
+```
+NODE_ENV=test
+PORT=3000
+
+AWS_ACCESS_KEY=
+AWS_SECRET_KEY=
+AWS_REGION=
+AWS_BUCKET=
+OPENAI_API_KEY=
+```
+
 ## Iniciando el server
 
 Modo debug:
 ```
-DEBUG=myapp:* npm start
+npm start
 ```
 ## URL
 
